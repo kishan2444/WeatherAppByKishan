@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Weather Web - by Error</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Josefin Sans', sans-serif;
+        user-select: none;
+    }
+
+    .navbar {
+        background-color: #000;
+    }
+
+    nav {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .collapse {
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .logo img {
+        animation: round 1s infinite linear;
+    }
+
+    .logo a {
+        text-decoration: none;
+    }
+
+    @keyframes round {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .nav-link {
+        margin: 10px 25px;
+        color: #fff;
+        font-size: 19px;
+    }
+
+    .nav-link:hover {
+        color: yellow;
+    }
+
+    .box {
+        width: 100%;
+        height: 30px;
+        background-color: #000;
+        position: relative;
+    }
+
+    .box-1 {
+        width: 50%;
+        background-color: #fff;
+        height: 100%;
+        border-radius: 0px 40px 0px 0px;
+        border-top: 5px solid #ff0000;
+        border-right: 5px solid #ff0000;
+    }
+
+    .box-2 {
+        position: absolute;
+        background-color: #fff;
+        height: 100%;
+        width: 50%;
+        right: 0;
+        top: 0;
+        border-radius: 40px 0px 0px 0px;
+        border-top: 5px solid #ff0000;
+        border-left: 5px solid #ff0000;
+    }
+
+    .four-center {
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .padd {
+        padding: 20px;
+    }
+
+    .main-first {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+    }
+
+    .main-first button {
+        width: 130px;
+    }
+
+    .main-first h2 {
+        margin: 15px 0px;
+    }
+
+    .main-first span {
+        color: #01b5da;
+    }
+
+    footer div span {
+        display: flex;
+        color: white !important;
+        /* text-align: center !important; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    form input {
+        width: 500px;
+        padding: 12px;
+        padding-left: 20px;
+        margin: 5px;
+        background-color: black;
+        color: white;
+        outline: none;
+        border-radius: 60px;
+        border: none;
+    }
+
+    form button {
+        background-color: #01b5da;
+        outline: none;
+        border: none;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 100px;
+
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 50px;
+    }
+
+    .four-center-2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 148px;
+    }
+
+    .four-center-2 .w-101{
+        width: 600px;
+        height: 300px!important;
+    }
+    .four-center-2 div div{
+        display: flex;
+    }
+    .four-center-2 div div i{
+        font-size: 50px;
+        margin-left: 20px;
+    }
+    .four-center-2 div div h1 {
+        font-size: 50px;
+    }
+    .times {
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <script src="https://kit.fontawesome.com/03a2fb3b55.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    {{>nav}}
+    <div class="container">
+        <form action="/weather" method="POST">
+            <input type="text" name="city" id="city" placeholder="Enter City Name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="four-center-2">
+            <div class="h-100 p-5 text-white bg-dark rounded-3 w-101">
+                <div class="times">
+                    <h5 id="tarikh">Date</h5>
+                    <h5 id="var">Var</h5>
+                </div>
+                <hr>
+                <h5 style="margin-top: 30px;">{{head}}</h5>
+                <h4 style="margin-top: 30px;">{{city}}</h4>
+                <div>
+                    <h1>{{tempreture}}</h1>
+                    {{!-- <i class="fas fa-cloud"></i> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>footer}}
+    <script>
+        var today = new Date();
+
+var dd = today.getDate();
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+var allDay = today.getDay();
+
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = dd+'-'+mm+'-'+yyyy;
+
+
+var weekDay = ['Sunday', 'Monday', 'Tueday', 'Wedday', 'Thuday', 'Friday', 'Satday'];
+var day = weekDay[allDay].toUpperCase();
+
+document.getElementById('tarikh').innerText = today;
+document.getElementById('var').innerText = day;
+
+    </script>
+</body>
+
+</html>

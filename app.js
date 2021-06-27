@@ -4,6 +4,7 @@ const hbs = require('hbs');
 const requests = require('requests');
 
 const app = express();
+const port = process.env.PORT || 80;
 
 myFilePath = path.join(__dirname, 'public');
 partialsPath = path.join(__dirname, 'partials');
@@ -68,6 +69,6 @@ app.get('*', (req, res) => {
     });
 })
 
-app.listen(80, () => {
+app.listen(port, () => {
     console.log('The Server Start');
 })
